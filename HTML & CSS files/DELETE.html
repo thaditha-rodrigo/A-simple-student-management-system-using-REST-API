@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>delete</title>
+	<link rel="stylesheet" type="text/css" href="STU_MANA_SYS_CSS.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script>
+		$(document).ready(function()
+						 {
+			$("#delete_sid_btn").click(function()
+									  {
+				 let id = document.getElementById("deletr_id_txt").value;
+				$.ajax({
+								url: "http://localhost:3000/students/id=" + id,
+								type: "DELETE",
+								contentType: "application/json",
+								dataType: "json",
+								success: function (data, textStatus, jQxhr) {
+									alert(data.message);
+								},
+								error:function (data, textStatus, jQxhr) {
+									alert(data.message);
+								}
+				});
+			});
+			
+			$("#delete_email_btn").click(function()
+									{
+								let email = document.getElementById("delete_email_txt").value;
+								$.ajax({
+									url: "http://localhost:3000/students/email=" + email,
+									type: "DELETE",
+									contentType: "application/json",
+									dataType: "json",
+									success: function (data, textStatus, jQxhr) {
+										alert(data.message);
+									},
+									error:function (data, textStatus, jQxhr) {
+										alert(data.message);
+									}
+									
+						});
+					});
+				  
+				
+			
+			});
+	</script>
+</head>
+
+<body id="bg">
+	<div class="navbar">
+	  	<a href="HOME.html">HOME</a>
+		<a href="INSERT&SHOW.html">INSERT & SHOW ALL</a>
+	 	 <a href="FIND.html">FIND</a>
+		<a href="UPDATE.html">UPDATE</a>
+	</div>
+	<script>
+		$(document).ready(function()
+						 {
+			$("input").focus(function()
+							{
+				$(this).css("background-color","#3366cc");
+			});
+			$("input").blur(function()
+						   {
+				$(this).css("background-color","");
+			});
+		});
+	</script>
+	<center>
+		<h1>DELETE STUDENTS</h1><br><br>
+		<table>
+			<tr>
+				<td>
+					SID :<br><br> 
+				</td>
+				<td>
+					 <input  type = "text" name = "deletr_id_txt" id = "deletr_id_txt" ><br><br>
+				</td>
+			</tr>
+			<br><br>
+			<tr>
+				<td>
+					EMAIL :
+				</td>
+				<td>
+					<input type = "text" name = "delete_email_txt" id = "delete_email_txt" >
+				</td>
+			</tr> 
+		</table>
+		<br><br>
+			<button class="button button1" name ="delete_sid_btn" id = "delete_sid_btn">DELETE BY SID</button>
+			<button class="button button1" name ="delete_email_btn" id = "delete_email_btn">DELETE EMAIL</button><br>
+			<p id="rqst_delete"></p>
+	</center>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Home</title>
+	<link rel="stylesheet" type="text/css" href="STU_MANA_SYS_CSS.css">
+	<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script>
+		
+		$(document).ready(function()
+						 {
+			
+			$("#insert").click(function()
+							  {
+				window.open("INSERT&SHOW.html",'_blank');
+			});
+			
+			$("#find").click(function()
+							{
+				window.open("FIND.html",'_blank');
+			});
+			
+			$("#update").click(function()
+							  {
+				window.open("UPDATE.html",'_blank');
+			});
+			
+			$("#delete").click(function()
+							  {
+				window.open("DELETE.html",'_blank');
+			});
+		});
+		
+		
+	</script>
+</head>
+
+<body id="bg">
+	
+	<center>
+		<h1>STUDENT MANAGEMENT SYSTEM</h1><br><br>
+		
+			<button class="button button1" id="insert" >INSERT & SHOW STUDENTS</button><br><br>
+		
+			<button class="button button1" id="find">FIND STUDENT</button><br><br>
+		
+			<button class="button button1" id="update">UPDATE STUDENT</button><br><br>
+	
+			<button class="button button1" id="delete">DELETE STUDENT</button><br><br>
+
+	</center>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>find</title>
+	<link rel="stylesheet" type="text/css" href="STU_MANA_SYS_CSS.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script>
+		$(document).ready(function()
+						 {
+
+			let val1 = document.getElementById("find_center").value.toLowerCase() ;
+			let val2 = document.getElementById("find_fname_txt").value.toLowerCase() ;
+			let val3 = document.getElementById("find_lname_txt").value.toLowerCase() ;
+			
+			$("#find_id_btn").click(function()
+							{
+				
+						$.ajax({
+								
+								url: "http://localhost:3000/students/id=" + $("#find_id_txt").val(),
+								type: "GET",
+								contentType: "application/json",
+								dataType: "json",
+								success: function (data, textStatus, jQxhr) {
+								let text = "<table border = '5px' style='color: aliceblue'><caption>SID</caption><tr><th>SID</th><th>FIRST NAME</th><th>LAST NAME</th><th>DATE OF BIRTH</th><th>SEMESTER</th><th>CENTER</th><th>CGPA</th><th>EMAIL</th></tr>";
+								for (let i = 0; i < data.length; i++) {
+								text += "<tr><td>" + data[i].id + "</td><td>" + data[i].firstname + "</td><td>" + data[i].lastname + "</td><td>" + data[i].dateofbirth + "</td><td>" + data[i].semester + "</td><td>" + data[i].center + "</td><td>" + data[i].cgpa + "</td><td>" + data[i].email + "</td></tr>";
+								}
+								text += "</table>";
+								document.getElementById("rqst_find_id").innerHTML = text;
+								},
+								error: function (jqXhr, textStatus, errorThrown) {
+								alert(data);
+								console.log(errorThrown);
+								} 
+						});
+			});
+			
+			$("#find_fname_btn").click(function()
+							{
+				
+						$(document).scrollTop(200);
+				
+						$.ajax({
+								url: "http://localhost:3000/students/firstname=" + $("#find_fname_txt").val() ,
+								type: "GET",
+								contentType: "application/json",
+								dataType: "json",
+								success: function (data, textStatus, jQxhr) {
+								let text1 = "<table border = '5px' style='color: aliceblue'><caption>FIRST NAME</caption><tr><th>SID</th><th>FIRST NAME</th><th>LAST NAME</th><th>DATE OF BIRTH</th><th>SEMESTER</th><th>CENTER</th><th>CGPA</th><th>EMAIL</th></tr>";
+								for (let i = 0; i < data.length; i++) {
+								text1 += "<tr><td>" + data[i].id + "</td><td>" + data[i].firstname + "</td><td>" + data[i].lastname + "</td><td>" + data[i].dateofbirth + "</td><td>" + data[i].semester + "</td><td>" + data[i].center + "</td><td>" + data[i].cgpa + "</td><td>" + data[i].email + "</td></tr>";
+								}
+								text1 += "</table>";
+								document.getElementById("rqst_find_fname").innerHTML = text1;
+								},
+								error: function (jqXhr, textStatus, errorThrown) {
+								console.log(errorThrown);
+								} 
+						});
+			});
+			
+			
+			$("#find_lname_btn").click(function()
+							{
+				
+						$(document).scrollTop(400);
+				
+						$.ajax({
+								url: "http://localhost:3000/students/lastname=" + $("#find_lname_txt").val(),
+								type: "GET",
+								contentType: "application/json",
+								dataType: "json",
+								success: function (data, textStatus, jQxhr) {
+								let text2 = "<table border = '5px' style='color: aliceblue'><caption>LAST NAME</caption><tr><th>SID</th><th>FIRST NAME</th><th>LAST NAME</th><th>DATE OF BIRTH</th><th>SEMESTER</th><th>CENTER</th><th>CGPA</th><th>EMAIL</th></tr>";
+								for (let i = 0; i < data.length; i++) {
+								text2 += "<tr><td>" + data[i].id + "</td><td>" + data[i].firstname + "</td><td>" + data[i].lastname + "</td><td>" + data[i].dateofbirth + "</td><td>" + data[i].semester + "</td><td>" + data[i].center + "</td><td>" + data[i].cgpa + "</td><td>" + data[i].email + "</td></tr>";
+								}
+								text2 += "</table>";
+								document.getElementById("rqst_find_lname").innerHTML = text2;
+								},
+								error: function (jqXhr, textStatus, errorThrown) {
+								console.log(errorThrown);
+								} 
+						});
+			});
+			
+			$("#find_center_btn").click(function()
+							{
+				
+						$(document).scrollTop(500);
+				
+						$.ajax({
+								url: "http://localhost:3000/students/center=" + $("#find_center").val(),
+								type: "GET",
+								contentType: "application/json",
+								dataType: "json",
+								success: function (data, textStatus, jQxhr) {
+								let text3 = "<table border = '5px' style='color: aliceblue'><caption>CENTER</caption><tr><th>SID</th><th>FIRST NAME</th><th>LAST NAME</th><th>DATE OF BIRTH</th><th>SEMESTER</th><th>CENTER</th><th>CGPA</th><th>EMAIL</th></tr>";
+								for (let i = 0; i < data.length; i++) {
+								text3 += "<tr><td>" + data[i].id + "</td><td>" + data[i].firstname + "</td><td>" + data[i].lastname + "</td><td>" + data[i].dateofbirth + "</td><td>" + data[i].semester + "</td><td>" + data[i].center + "</td><td>" + data[i].cgpa + "</td><td>" + data[i].email + "</td></tr>";
+								}
+								text3 += "</table>";
+								document.getElementById("rqst_find_center").innerHTML = text3;
+								},
+								error: function (jqXhr, textStatus, errorThrown) {
+								console.log(errorThrown);
+								} 
+						});
+			});
+			
+			$("#find_sem_btn").click(function()
+							{
+						$(document).scrollTop(700);
+				
+						$.ajax({
+								url: "http://localhost:3000/students/semester=" + $("#find_sem").val(),
+								type: "GET",
+								contentType: "application/json",
+								dataType: "json",
+								success: function (data, textStatus, jQxhr) {
+								let text4 = "<table border = '5px' style='color: aliceblue'><caption>SEMESTER</caption><tr><th>SID</th><th>FIRST NAME</th><th>LAST NAME</th><th>DATE OF BIRTH</th><th>SEMESTER</th><th>CENTER</th><th>CGPA</th><th>EMAIL</th></tr>";
+								for (let i = 0; i < data.length; i++) {
+								text4 += "<tr><td>" + data[i].id + "</td><td>" + data[i].firstname + "</td><td>" + data[i].lastname + "</td><td>" + data[i].dateofbirth + "</td><td>" + data[i].semester + "</td><td>" + data[i].center + "</td><td>" + data[i].cgpa + "</td><td>" + data[i].email + "</td></tr>";
+								}
+								text4 += "</table>";
+								document.getElementById("rqst_find_semester").innerHTML = text4;
+								},
+								error: function (jqXhr, textStatus, errorThrown) {
+								console.log(errorThrown);
+								} 
+						});
+			});
+			
+			$("#find_cgpa_btn").click(function()
+							{
+				
+						$(document).scrollTop(1200);	
+				
+						$.ajax({
+								url: "http://localhost:3000/students/cgpa=" + $("#find_cgpa_txt").val(),
+								type: "GET",
+								contentType: "application/json",
+								dataType: "json",
+								success: function (data, textStatus, jQxhr) {
+								let text5 = "<table border = '5px' style='color: aliceblue'><caption>CGPA</caption><tr><th>SID</th><th>FIRST NAME</th><th>LAST NAME</th><th>DATE OF BIRTH</th><th>SEMESTER</th><th>CENTER</th><th>CGPA</th><th>EMAIL</th></tr>";
+								for (let i = 0; i < data.length; i++) {
+								text5 += "<tr><td>" + data[i].id + "</td><td>" + data[i].firstname + "</td><td>" + data[i].lastname + "</td><td>" + data[i].dateofbirth + "</td><td>" + data[i].semester + "</td><td>" + data[i].center + "</td><td>" + data[i].cgpa + "</td><td>" + data[i].email + "</td></tr>";
+								}
+								text5 += "</table>"
+								document.getElementById("rqst_find_cgpa").innerHTML = text5;
+								},
+								error: function (jqXhr, textStatus, errorThrown) {
+								console.log(errorThrown);
+								} 
+						});
+			});
+			
+		});
+	</script>
+</head>
+
+<body id="bg">
+	<div class="navbar">
+	  	<a href="HOME.html">HOME</a>
+		<a href="INSERT&SHOW.html">INSERT & SHOW ALL</a>
+	 	<a href="UPDATE.html">UPDATE</a>
+		<a href="DELETE.html">DELETE</a>
+	</div>
+	 <br><br>
+	<script>
+		$(document).ready(function()
+						 {
+			$("input").focus(function()
+							{
+				$(this).css("background-color","#3366cc");
+			});
+			$("input").blur(function()
+						   {
+				$(this).css("background-color","");
+			});
+		});
+	</script>
+	<center>
+		<h1>FIND STUDENTS</h1><br><br>
+		<table>
+		<tr>
+			<td>
+				SID : <br><br>
+			</td>
+			<td>
+				<input type = "text" name = "find_id_txt" id = "find_id_txt" ><br><br>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				FIRST NAME :<br><br>
+			</td>
+			<td>
+				<input type = "text" name = "find_fname_txt" id = "find_fname_txt" ><br><br>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				LAST NAME :<br><br>
+			</td>
+			<td>
+				<input type = "text" name = "find_lname_txt" id = "find_lname_txt" ><br><br>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CENTER :<br><br>
+			</td>
+			<td>
+				<select name="find_center" id="find_center">
+  					<option value="colombo">colombo</option>
+  					<option value="kandy">kandy</option>
+					 <option value="jaffna">jaffna</option>
+				</select>
+				<br><br>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SEMESTER :<br><br>
+			</td>
+			<td>
+				<select name="find_sem" id="find_sem">
+  					<option value="1">1</option>
+  					<option value="2">2</option>
+				</select>
+				<br><br>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 CGPA :<br><br>
+			</td>
+			<td>
+				 <input type = "text" name = "find_cgpa_txt" id = "find_cgpa_txt" ><br><br>
+			</td>
+		</tr>
+	</table>
+		<br>
+		 <button class="button button1" name ="find_id_btn" id = "find_id_btn">FIND BY ID</button>
+         <button class="button button1" name ="find_fname_btn" id = "find_fname_btn">FIND BY FIRST NAME</button>
+		 <button class="button button1" name ="find_lname_btn" id = "find_lname_btn">FIND BY LAST NAME</button>
+         <button class="button button1" name ="find_center_btn" id = "find_center_btn">FIND BY CENTER</button>
+         <button class="button button1" name ="find_sem_btn" id = "find_sem_btn">FIND BY SEMESTER</button>
+         <button class="button button1" name ="find_cgpa_btn" id = "find_cgpa_btn">FIND BY CGPA</button><br><br>
+		<p id="rqst_find_id"></p><br><br>
+		<p id="rqst_find_fname"></p><br><br>
+		<p id="rqst_find_lname"></p><br><br>
+		<p id="rqst_find_center"></p><br><br>
+		<p id="rqst_find_semester"></p><br><br>
+		<p id="rqst_find_cgpa"></p><br><br>
+	</center>		
+</body>
+</html>

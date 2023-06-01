@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>update</title>
+	<link rel="stylesheet" type="text/css" href="STU_MANA_SYS_CSS.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script>
+		$(document).ready(function()
+						 {
+			$("#update_sid_btn").click(function()
+									{ 
+				
+				let val1 = document.getElementById("update_sem").value ;				  
+				let val2 = document.getElementById("update_center").value ;
+				let val3 = document.getElementById("update_fname_txt").value.toLowerCase() ;
+				let val4 = document.getElementById("update_lname_txt").value.toLowerCase() ;
+
+		
+							$.ajax({
+								type:"PUT",
+								url: "http://localhost:3000/students/" + $("#update_id_txt").val(),
+								contentType: "application/json",
+								data: JSON.stringify(
+								{
+								"id": parseInt($("#update_id_txt").val()),
+								"firstname": val3.toLowerCase(),
+								"lastname": val4.toLowerCase(),
+								"dateofbirth": $("#update_dob_txt").val(),
+								"semester": $("#update_sem").val(),
+								"center": val2.toLowerCase(),
+								"cgpa": parseFloat($("#update_cgpad_txt").val()),
+								"email": $("#update_email_txt").val()
+								}),
+								success: function (data, textStatus, jQxhr) {
+								alert("Data Updated");
+								},
+								error: function (xhr, textStatus, error) {
+								alert("Error");
+								}
+							});
+		
+			});
+		});
+	</script>
+</head>
+
+<body id="bg">
+	<div class="navbar">
+	  	<a href="HOME.html">HOME</a>
+		<a href="INSERT&SHOW.html">INSERT & SHOW ALL</a>
+	 	<a href="FIND.html">FIND</a>
+		<a href="DELETE.html">DELETE</a>
+	</div>
+	<br><br>
+	<script>
+		$(document).ready(function()
+						 {
+			$("input").focus(function()
+							{
+				$(this).css("background-color","#3366cc");
+			});
+			$("input").blur(function()
+						   {
+				$(this).css("background-color","");
+			});
+		});
+	</script>
+	<center>
+		<h1>UPDATE STUDENTS</h1><br><br>
+		<table>
+		<tr>
+			<td>
+				SID :<br><br>
+			</td>
+			<td>
+				<input type = "text" name = "update_id_txt" id = "update_id_txt" ><br><br>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				FIRST NAME :<br><br>
+			</td>
+			<td>
+				<input type = "text" name = "update_fname_txt" id = "update_fname_txt" ><br><br>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				LAST NAME :<br><br>
+			</td>
+			<td>
+				<input type = "text" name = "update_lname_txt" id = "update_lname_txt" ><br><br>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				DATE OF BIRTH :<br><br>
+			</td>
+			<td>
+				<input type = "date" name = "update_dob_txt" id = "update_dob_txt" ><br><br>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CENTER :<br><br>
+			</td>
+			<td>
+				<select name="update_center" id="update_center">
+  					<option value="colombo">colombo</option>
+  					<option value="kandy">kandy</option>
+					<option value="jaffna">jaffna</option>
+				</select>
+				<br><br>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SEMESTER :<br><br>
+			</td>
+			<td>
+				<select name="update_sem" id="update_sem">
+  					<option value="1">1</option>
+  					<option value="2">2</option>
+				</select>
+				<br><br>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 CGPA :<br><br>
+			</td>
+			<td>
+				 <input type = "text" name = "update_cgpad_txt" id = "update_cgpad_txt" ><br><br>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				EMAIL :<br><br>
+			</td>
+			<td>
+				<input type = "text" name = "update_email_txt" id = "update_email_txt" ><br><br>
+			</td>
+		</tr>
+	</table>
+		<br>
+		<button class="button button1" name ="update_sid_btn" id = "update_sid_btn">UPDATE BY SID</button><br><br>
+		<p id="rqst_update"></p>
+	</center>
+</body>
+</html>

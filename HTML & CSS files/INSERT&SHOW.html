@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>insert&show</title>
+	<link rel="stylesheet" type="text/css" href="STU_MANA_SYS_CSS.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+							
+		$(document).ready(function()
+						{
+										$("#insert").click(function()
+														{
+										    let val1 = document.getElementById("stu_sem").value ;
+											let val2 = document.getElementById("stu_center").value.toLowerCase() ;
+											let val3 = document.getElementById("stu_first_name").value.toLowerCase() ;
+											let val4 = document.getElementById("stu_last_name").value.toLowerCase() ;
+											if ( val1 ==1 || val1==2 )
+												{
+													if ( val2.toLowerCase() === 'kandy' || val2.toLowerCase() === 'jaffna' || val2.toLowerCase() === 'colombo')
+														{
+											
+															$.ajax({
+																	type:"POST",
+																	url: "http://localhost:3000/student/",
+																	contentType: "application/json",
+																	data: JSON.stringify(
+																	{
+																	"id": parseInt($("#stu_id").val()),
+																	"firstname": val3.toLowerCase(),
+																	"lastname": val4.toLowerCase(),
+																	"dateofbirth": $("#stu_dob").val(),
+																	"semester": parseFloat($("#stu_sem").val()),
+																	"center": val2.toLowerCase(),
+																	"cgpa": parseFloat($("#stu_cgpa").val()),
+																	"email": $("#stu_email").val()
+																	}),
+																	success: function (data, textStatus, jQxhr) {
+																	alert("Data Inserted");
+																	},
+																	error: function (xhr, textStatus, error) {
+																	alert("Error");
+																	}
+															});
+														}
+													else
+														{
+																alert("Invalid center, Please enter the center again!!");
+														}
+												}
+											else
+												{
+													alert("Invalid Semester, Please enter the semester again!!");
+												}
+										});
+			
+					$("#show_all").click(function()
+			 		
+							{
+						
+								$("#rqst_show").toggle("fast")
+								$.ajax({
+									url: "http://localhost:3000/students",
+									type: "GET",
+									contentType: "application/json",
+									dataType: "json",
+									success: function (data, textStatus, jQxhr) {
+									let text = "<table border = '5px'style='color: aliceblue'><tr><th>SID</th><th>FIRST NAME</th><th>LAST NAME</th><th>DATE OF BIRTH</th><th>SEMESTER</th><th>CENTER</th><th>CGPA</th><th>EMAIL</th></tr>";
+									for (let i = 0; i < data.length; i++) {
+									text += "<tr><td>" + data[i].id + "</td><td>" + data[i].firstname + "</td><td>" + data[i].lastname + "</td><td>" + data[i].dateofbirth + "</td><td>" + data[i].semester + "</td><td>" + data[i].center + "</td><td>" + data[i].cgpa + "</td><td>" + data[i].email + "</td></tr>";
+									}
+									text += "</table>"
+									document.getElementById("rqst_show").innerHTML = text;
+									},
+									error: function (jqXhr, textStatus, errorThrown) {
+									console.log(errorThrown);
+									} 
+								});
+					});
+			});
+		
+	</script>
+	
+</head>
+
+<body id="bg">
+	<div class="navbar">
+	  	<a href="HOME.html">HOME</a>
+	 	 <a href="FIND.html">FIND</a>
+		<a href="UPDATE.html">UPDATE</a>
+		<a href="DELETE.html">DELETE</a>
+	</div>
+	<br><br>
+	<script>
+		$(document).ready(function()
+						 {
+			$("input").focus(function()
+							{
+				$(this).css("background-color","#3366cc");
+			});
+			$("input").blur(function()
+						   {
+				$(this).css("background-color","");
+			});
+		});
+	</script>
+	<center>
+			<h1>INSERT STUDENT / SHOW ALL STUDENTS</h1><br><br>
+		<table>
+		<tr>
+			<td>
+				SID :<br><br>
+			</td>
+			<td>
+				<input type = "text" name = "stu_id" id = "stu_id" ><br><br>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				FIRST NAME :<br><br>
+			</td>
+			<td>
+				<input type = "text" name = "stu_first_name" id = "stu_first_name" ><br><br>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				LAST NAME :<br><br>
+			</td>
+			<td>
+				<input type = "text" name = "stu_last_name" id = "stu_last_name" ><br><br>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				DATE OF BIRTH :<br><br>
+			</td>
+			<td>
+				<input type = "date" name = "stu_dob" id = "stu_dob" ><br><br>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CENTER :<br><br>
+			</td>
+			<td>
+				<select name="stu_center" id="stu_center">
+  					<option value="kandy">kandy</option>
+					 <option value="jaffna">jaffna</option>
+				</select>
+				<br><br>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SEMESTER :<br><br>
+			</td>
+			<td>
+				<select name="stu_sem" id="stu_sem">
+  					<option value="1">1</option>
+  					<option value="2">2</option>
+				</select>
+				<br><br>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 CGPA :<br><br>
+			</td>
+			<td>
+				 <input type = "text" name = "stu_cgpa" id = "stu_cgpa" ><br><br>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				EMAIL :<br><br>
+			</td>
+			<td>
+				<input type = "text" name = "stu_email" id = "stu_email" ><br><br>
+			</td>
+		</tr>
+	</table>
+	<br>
+			<button  class="button button1" name ="insert" id = "insert">INSERT</button><br><br>
+            <button  class="button button1" name ="show_all" id = "show_all">SHOW ALL</button><br><br>
+			<p id="rqst_show"></p>
+</center>
+	 
+	
+</body>
+</html>
