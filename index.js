@@ -14,35 +14,35 @@ console.log("Server running on port 3000");
 
 let students = [ {
     "id": 1,
-    "firstname": "sachin",
-    "lastname": "akash",
-    "dateofbirth": "2001-12-22",
+    "firstname": "",
+    "lastname": "",
+    "dateofbirth": "",
     "semester": 1,
-    "center": "jaffna",
+    "center": "",
     "cgpa": 3.9,
-    "email": "sachinakx@gmail.com"
+    "email": ""
 },
 {
     "id": 2,
-    "firstname": "dinidu",
-    "lastname": "paranavithana",
-    "dateofbirth": "1999-06-23",
+    "firstname": "",
+    "lastname": "",
+    "dateofbirth": "",
     "semester": 1,
-    "center": "kandy",
+    "center": "",
     "cgpa": 3.7,
-    "email": "dinidusix@gmail.com"
+    "email": ""
 },
 {
     "id": 3,
-    "firstname": "manuja",
-    "lastname": "suriyaarchchige",
-    "dateofbirth": "2001-02-01",
+    "firstname": "",
+    "lastname": "",
+    "dateofbirth": "",
     "semester": 1,
-    "center": "colombo",
+    "center": "",
     "cgpa": 3.8,
-    "email": "manuja123@gmail.com"
+    "email": ""
 }];
-let student = {"id":1,"firstname":"Sadun","lastname":"Akalanka","dateofbirth":"1997-07-23","semester":2,"center":"Kandy","cgpa":3.5,"email":"dfsffssf"};
+let student = {"id":1,"":"","":"","dateofbirth":"","semester":2,"center":"","cgpa":3.5,"email":""};
 
 //View
 app.get("/students", (req, res)=> {
